@@ -33,7 +33,7 @@ func (s *JWTStrategy) Generate(payload Payload) (string, error) {
 func (s *JWTStrategy) Parse(token string) (*Payload, error) {
 	var claims jwtClaims
 
-	t, err := jwt.ParseWithClaims(token, claims, func(token *jwt.Token) (interface{}, error) {
+	t, err := jwt.ParseWithClaims(token, &claims, func(token *jwt.Token) (interface{}, error) {
 		return s.secret, nil
 	})
 
